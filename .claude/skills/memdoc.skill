@@ -1,0 +1,47 @@
+# MemFabric Hybrid 文档导航
+
+此技能帮助你在 MemFabric Hybrid 项目文档中快速查找和定位信息。
+
+## 使用方式
+
+```
+/memdoc                    # 显示文档概览
+/memdoc api                # 显示 API 对比 (BM/SHM/Trans)
+/memdoc module <名称>       # 查看特定模块信息
+/memdoc concept <术语>      # 解释概念 (如 GVA, RDMA, H2G)
+/memdoc example <名称>      # 查找示例代码
+/memdoc find <模式>         # 搜索文件/模式
+```
+
+## 示例
+
+```
+/memdoc                    # 显示文档概览和导航
+/memdoc api                # 显示 BM/SHM/Trans API 对比
+/memdoc module hybm        # 显示 HyBM 模块信息
+/memdoc concept G2G        # 解释 G2G 拷贝操作
+/memdoc example allreduce  # 查找 AllReduce 示例
+/memdoc find entity        # 搜索包含 entity 的文件
+```
+
+## 快速参考
+
+### 模块列表
+- `util` - 公共工具模块
+- `acc_links` - 内部通信层 (TCP)
+- `hybm` - 内存管理与访问层 (核心)
+- `smem` - 语义与接口层
+- `3rdparty` - 第三方库
+- `example` - 示例代码
+
+### API 类型
+- `BM` (Big Memory) - 跨节点内存拷贝
+- `SHM` (Shared Memory) - 对称共享内存
+- `Trans` (Transfer) - 点对点传输
+
+### 拷贝类型
+- `H2G` - Host → Global (Device)
+- `G2G` - Global → Global (跨设备)
+- `G2H` - Global → Host
+- `L2G` - Local → Global
+- `G2L` - Global → Local

@@ -1,0 +1,73 @@
+{
+  "name": "memdoc",
+  "description": "MemFabric Hybrid 项目文档导航助手 - 快速查找和定位项目文档信息",
+  "version": "1.0.0",
+  "author": "Claude Code",
+
+  "commands": [
+    {
+      "name": "memdoc",
+      "description": "显示 MemFabric Hybrid 文档概览或查询特定信息",
+      "usage": "/memdoc [query]",
+      "examples": [
+        "/memdoc - 显示文档概览",
+        "/memdoc api - 显示 API 对比",
+        "/memdoc module hybm - 显示 HyBM 模块信息",
+        "/memdoc concept G2G - 解释 G2G 拷贝操作",
+        "/memdoc example allreduce - 查找 AllReduce 示例"
+      ]
+    }
+  ],
+
+  "topics": {
+    "api": {
+      "description": "显示 BM/SHM/Trans API 对比",
+      "content": "API 类型说明\n- BM (Big Memory): 跨节点内存拷贝\n- SHM (Shared Memory): 对称共享内存\n- Trans (Transfer): 点对点传输"
+    },
+    "modules": {
+      "description": "可用模块列表",
+      "modules": ["util", "acc_links", "hybm", "smem", "3rdparty", "example"]
+    },
+    "copy_types": {
+      "description": "内存拷贝类型",
+      "types": {
+        "H2G": "Host → Global (Device)",
+        "G2G": "Global → Global (跨设备)",
+        "G2H": "Global → Host",
+        "L2G": "Local → Global",
+        "G2L": "Global → Local"
+      }
+    }
+  },
+
+  "documentation": {
+    "root": "docs/",
+    "index": "docs/README.md",
+    "structure": {
+      "00-项目总览.md": "项目架构与快速入门",
+      "01-util/": "公共工具模块 (2,707 行)",
+      "02-acc_links/": "内部通信层 (6,364 行)",
+      "03-hybm/": "内存管理与访问层 (27,970 行) - 核心模块",
+      "04-smem/": "语义与接口层 (14,504 行)",
+      "05-3rdparty/": "第三方库说明",
+      "06-example/": "示例代码解读"
+    }
+  },
+
+  "key_files": {
+    "entries": [
+      "src/hybm/csrc/hybm_entry.cpp - HyBM 模块入口",
+      "src/smem/csrc/smem.cpp - Smem 模块入口"
+    ],
+    "core": [
+      "src/hybm/csrc/entity/hybm_entity_default.cpp - 实体管理核心 (1,238 行)",
+      "src/smem/csrc/net/smem_net_group_engine.cpp - 网络组引擎 (1,109 行)",
+      "src/hybm/csrc/transport/host/host_hcom_transport_manager.cpp - HCOM 传输 (1,068 行)"
+    ],
+    "examples": [
+      "example/bm/BmCpp/main.cpp - BM API C++ 示例",
+      "example/shm/AllReduce/main.cpp - AllReduce 示例",
+      "example/shm/AllReduce/shm_all_reduce.cpp - AllReduce 内核实现"
+    ]
+  }
+}
