@@ -1,6 +1,6 @@
 # MemFabric Hybrid 文档导航
 
-此技能帮助你在 MemFabric Hybrid 项目文档中快速查找和定位信息。
+此技能帮助你在 MemFabric Hybrid 项目文档中快速查找和定位信息，并检查源码与文档同步状态。
 
 ## 使用方式
 
@@ -11,6 +11,12 @@
 /memdoc concept <术语>      # 解释概念 (如 GVA, RDMA, H2G)
 /memdoc example <名称>      # 查找示例代码
 /memdoc find <模式>         # 搜索文件/模式
+
+# 同步检查功能
+/memdoc sync               # 检查源码变更，提示需要更新的文档
+/memdoc check              # 同上
+/memdoc status             # 显示完整状态 (概览+同步检查)
+/memdoc coverage           # 检查文档覆盖率
 ```
 
 ## 示例
@@ -21,7 +27,7 @@
 /memdoc module hybm        # 显示 HyBM 模块信息
 /memdoc concept G2G        # 解释 G2G 拷贝操作
 /memdoc example allreduce  # 查找 AllReduce 示例
-/memdoc find entity        # 搜索包含 entity 的文件
+/memdoc sync               # 检查哪些源码变更需要更新文档
 ```
 
 ## 快速参考
@@ -45,3 +51,16 @@
 - `G2H` - Global → Host
 - `L2G` - Local → Global
 - `G2L` - Global → Local
+
+## 同步检查说明
+
+当执行 `/memdoc sync` 时，会：
+1. 检查 git 状态，获取修改的源码文件
+2. 查看最近的提交
+3. 根据源码文件路径匹配对应的文档
+4. 提示哪些文档可能需要更新
+
+建议在以下情况使用：
+- `git pull` 之后 - 检查远程更新是否需要更新文档
+- 修改源码后 - 提醒自己更新对应文档
+- 代码审查前 - 确认文档是否与代码同步

@@ -1,7 +1,7 @@
 {
   "name": "memdoc",
-  "description": "MemFabric Hybrid 项目文档导航助手 - 快速查找和定位项目文档信息",
-  "version": "1.0.0",
+  "description": "MemFabric Hybrid 项目文档导航助手 - 快速查找、定位文档信息，并检查源码与文档同步状态",
+  "version": "2.0.0",
   "author": "Claude Code",
 
   "commands": [
@@ -14,7 +14,19 @@
         "/memdoc api - 显示 API 对比",
         "/memdoc module hybm - 显示 HyBM 模块信息",
         "/memdoc concept G2G - 解释 G2G 拷贝操作",
-        "/memdoc example allreduce - 查找 AllReduce 示例"
+        "/memdoc example allreduce - 查找 AllReduce 示例",
+        "/memdoc sync - 检查源码与文档同步状态",
+        "/memdoc status - 显示完整状态"
+      ]
+    },
+    {
+      "name": "memdoc-sync",
+      "description": "检查源码变更，提示需要更新的文档",
+      "usage": "/memdoc sync 或 /memdoc check",
+      "triggers": [
+        "git pull 之后",
+        "修改源码后",
+        "代码审查前"
       ]
     }
   ],
@@ -52,6 +64,21 @@
       "05-3rdparty/": "第三方库说明",
       "06-example/": "示例代码解读"
     }
+  },
+
+  "sync_check": {
+    "description": "检查源码与文档同步状态",
+    "source_to_doc_mapping": {
+      "src/util/": "docs/01-util/",
+      "src/acc_links/": "docs/02-acc_links/",
+      "src/hybm/": "docs/03-hybm/",
+      "src/smem/": "docs/04-smem/",
+      "example/": "docs/06-example/"
+    },
+    "git_commands": [
+      "git status --porcelain - 检查未提交的修改",
+      "git log -1 --name-only --pretty=format: - 检查最近提交"
+    ]
   },
 
   "key_files": {
